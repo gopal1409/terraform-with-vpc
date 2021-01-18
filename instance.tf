@@ -8,4 +8,23 @@ resource "aws_instance" "example" {
 
     #the public ssh key_name
     key_name = aws_key_pair.mykeypair.key_name
+        tags = {
+        Name = "storage instance gopal"
+    }
+
+}
+resource "aws_ebs_volume" "ebs-volume-1" {
+    #we need to check my instance and storage should be in the same data center
+    availability_zone = "us-east-2a"
+    size = 20
+    type = "gp2"
+    tags = {
+        Name = "volume for gopal"
+    }
+}
+
+resource "aws_volume_attachment" "ebsvolume" {
+    device_name = "/dev/xvdh"
+    volume_id = aws_ebs_volume.ebs-volume-1.id 
+    instance_id = aws_instance.example.id
 }
