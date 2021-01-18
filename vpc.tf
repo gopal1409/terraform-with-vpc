@@ -16,7 +16,7 @@ resource "aws_subnet" "app-public-1" {
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-2a"
   tags = {
-    Name = "main-public-1"
+    Name = "app-public-1"
   }
 }
 
@@ -25,7 +25,7 @@ resource "aws_subnet" "app-public-2" {
   cidr_block = "10.0.2.0/24"
   availability_zone = "us-east-2b"
   tags = {
-    Name = "main.public-2"
+    Name = "app.public-2"
   }
 }
 
@@ -34,6 +34,6 @@ resource "aws_subnet" "app-public-3" {
   cidr_block = "10.0.3.0/24"
   availability_zone = "us-east-2c"
   tags = {
-    Name = "main.public-3"
+    Name = "app.public-3"
   }
 }
