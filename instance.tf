@@ -11,7 +11,7 @@ resource "aws_instance" "example" {
         tags = {
         Name = "storage instance gopal"
     }
-    user_data = data.template_cloudinit_config.cloudinit-example.rendered
+   user_data = data.template_cloudinit_config.cloudinit-example.rendered 
 
 }
 resource "aws_ebs_volume" "ebs-volume-1" {
