@@ -24,7 +24,7 @@ resource "aws_ebs_volume" "ebs-volume-1" {
 }
 
 resource "aws_volume_attachment" "ebsvolume" {
-    device_name = "/dev/xvdh"
+    device_name = var.INSTANCE_DEVICE_NAME
     volume_id = aws_ebs_volume.ebs-volume-1.id 
     instance_id = aws_instance.example.id
 }
