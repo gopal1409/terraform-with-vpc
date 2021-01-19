@@ -10,7 +10,6 @@ resource "aws_security_group" "allow-ssh" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -20,5 +19,28 @@ resource "aws_security_group" "allow-ssh" {
 
   tags = {
     Name = "allow_ssh"
+  }
+}
+resource "aws_security_group" "allow-mariadb" {
+  name        = "allow-mariadb"
+  description = "Allow mariadb"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "allow-mariadb"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = [aws_security_group.example-instance.id]# allowing access from our example instance
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow-mariadb"
   }
 }
